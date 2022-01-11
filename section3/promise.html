@@ -31,6 +31,28 @@
       }
 
       console.log(promiseTest3('太郎'));
+
+
+      function promiseTest4(pay) {
+        return new Promise((ok, ng) => {
+          if(pay > 100){
+            let change = pay - 100;
+            ok(change);
+          }
+          ng('お金が足りません');
+        })
+      }
+
+      console.log(promiseTest4(80).catch( e => {
+        console.log(e);
+      }));
+
+      promiseTest4(180).then(change1 => {
+        console.log(change1);
+        return promiseTest4(change1);
+      }).then(change2 => {
+        console.log(change2);
+      }).catch( e => console.log(e));
   </script>
 </body>
 </html>
